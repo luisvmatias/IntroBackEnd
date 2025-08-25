@@ -1,5 +1,3 @@
-// calculadora.js - Módulo com as operações matemáticas
-
 function somar(a, b) {
     return a + b;
 }
@@ -30,7 +28,6 @@ function raizQuadrada(a) {
     return Math.sqrt(a);
 }
 
-// Exportando todas as funções
 module.exports = {
     somar,
     subtrair,

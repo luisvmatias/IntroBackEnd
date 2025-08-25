@@ -1,4 +1,3 @@
-// index.js - Calculadora interativa no terminal
 const prompt = require('prompt-sync')();
 const calc = require('./calculadora');
 
@@ -134,6 +133,5 @@ function realizarRaizQuadrada() {
     }
 }
 
-// Iniciar a calculadora
 console.log('Bem-vindo à Calculadora Node.js!');
 calcular();
