@@ -19,7 +19,25 @@ let pessoas = [
 ];
 
 // Criar
-router.post('/pessoas', (req, res, next) => {});
+router.post('/pessoas', (req, res, next) => {
+    const {nome, cpf, email, dataNascimento} = req.body
+    if(!nome || !cpf || !email || !dataNascimento) {
+        return res.status(400).json({ error: "Todos os campos são obrigatórios" }); 
+    }
+    const pessoa = pessoas.find(pessoa => pessoa.cpf == cpf)
+    if(pessoa) {
+        return res.status(409).json({ error: "CPF já cadastrada" });
+    }
+    const novaPessoa = {
+        id: Date.now(),
+        nome,
+        cpf,
+        email,
+        dataNascimento
+    }
+    pessoas.push(novaPessoa)
+    res.status(201).json({message: "Pessoa criada com sucesso", novaPessoa});
+});
 
 // Listar
 router.get('/pessoas', (req, res, next) => {
