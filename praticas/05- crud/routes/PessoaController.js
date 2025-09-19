@@ -41,7 +41,7 @@ router.post('/pessoas', (req, res, next) => {
 
 // Listar
 router.get('/pessoas', (req, res, next) => {
-    res.json(pessoas[0]);
+    res.json(pessoas);
 });
 
 // Buscar por ID
