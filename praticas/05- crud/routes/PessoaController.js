@@ -72,7 +72,15 @@ router.put('/pessoas/:id', (req, res, next) => {
 });
 
 // Deletar
-router.delete('/pessoas/:id', (req, res, next) => {});
+router.delete('/pessoas/:id', (req, res, next) => {
+    const idRecebido = req.params.id
+    const pessoa = pessoas.find(pessoa => pessoa.id == idRecebido)
+    if(!pessoa) {
+        return res.status(404).json({ error: "Pessoa não encontrada" });
+    }
+    pessoas = pessoas.filter(pessoa => pessoa.id != idRecebido)
+    res.json({message: "Pessoa deletada com sucesso"});
+});
 
 
 
