@@ -55,7 +55,21 @@ router.get('/pessoas/:id', (req, res, next) => {
 });
 
 //Editar
-router.put('/pessoas/:id', (req, res, next) => {});
+router.put('/pessoas/:id', (req, res, next) => {
+    const idRecebido = req.params.id
+    const {nome, email, dataNascimento} = req.body
+    if(!nome || !email || !dataNascimento) {
+        return res.status(400).json({ error: "Todos os campos são obrigatórios" }); 
+    }
+    const pessoa = pessoas.find(pessoa => pessoa.id == idRecebido)
+    if(!pessoa) {
+        return res.status(404).json({ error: "Pessoa não encontrada" });
+    }
+    pessoa.nome = nome
+    pessoa.email = email
+    pessoa.dataNascimento = dataNascimento
+    res.json({message: "Pessoa atualizada com sucesso", pessoa});
+});
 
 // Deletar
 router.delete('/pessoas/:id', (req, res, next) => {});
